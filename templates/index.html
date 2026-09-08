@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shreya Computing | Resource Optimizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar">
+    <div><div class="brand">SHREYA COMPUTING</div><div class="subtitle">Virtual Desktop Resource Optimizer</div></div>
+    <div class="algo-pill">0/1 KNAPSACK • DYNAMIC PROGRAMMING</div>
+</header>
+<main class="container">
+<section class="hero">
+    <div><p class="eyebrow">CENTRALIZED COMPUTING</p><h1>Choose the most valuable workloads.</h1><p>Give the server a limited resource capacity. The Python backend applies 0/1 Knapsack to select the workload combination with the highest business value without exceeding capacity.</p></div>
+    <div class="hero-card"><span>SERVER CAPACITY</span><strong id="capacityHero">15</strong><small>resource units</small></div>
+</section>
+<section class="panel">
+    <div class="panel-head"><div><h2>Server Configuration</h2><p>Change these values and run the algorithm again.</p></div><div class="capacity-control"><label for="capacity">Capacity</label><input id="capacity" type="number" min="0" value="15"></div></div>
+    <div class="table-wrap"><table><thead><tr><th>#</th><th>Workload</th><th>Resource Cost</th><th>Business Value</th><th>Value / Cost</th><th>Status</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+    <div class="actions"><button id="addBtn" class="secondary">＋ Add Workload</button><button id="demoBtn" class="secondary">↻ Load Demo</button><button id="runBtn" class="primary">▶ Run Knapsack</button></div>
+    <div id="error" class="error"></div>
+</section>
+<section class="stats"><div class="stat"><span>MAXIMUM BUSINESS VALUE</span><strong id="maxValue">—</strong></div><div class="stat"><span>RESOURCES USED</span><strong id="used">—</strong></div><div class="stat"><span>REMAINING CAPACITY</span><strong id="remaining">—</strong></div><div class="stat"><span>SELECTED WORKLOADS</span><strong id="selectedCount">—</strong></div></section>
+<section class="grid">
+<div class="panel result-panel"><div class="panel-head"><div><h2>Optimization Result</h2><p id="resultText">Run the algorithm to see the optimal allocation.</p></div><div id="decisionBadge" class="badge neutral">WAITING</div></div><div class="capacity-bar"><div id="barFill"></div></div><div id="selectedList" class="selected-list"><div class="empty">No result yet.</div></div></div>
+<div class="panel"><div class="panel-head"><div><h2>How Knapsack Decides</h2><p>Each DP cell stores the best value possible.</p></div></div><div class="formula"><div><b>Exclude</b> item → <code>DP[i-1][c]</code></div><div><b>Include</b> item → <code>value + DP[i-1][c-weight]</code></div><div><b>Choose</b> → maximum of the two</div></div><div id="decisionLog" class="decision-log">Edit the inputs, then click <b>Run Knapsack</b>.</div></div>
+</section>
+<section class="panel"><div class="panel-head"><div><h2>Dynamic Programming Table</h2><p>Watch the cells light up as the Python-computed table is revealed.</p></div></div><div id="dpTable" class="dp-wrap"><div class="empty">No DP table yet.</div></div></section>
+</main>
+<footer>Shreya Computing • Virtual Desktop Resource Optimizer</footer>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
